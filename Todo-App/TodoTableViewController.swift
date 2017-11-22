@@ -10,6 +10,15 @@ import UIKit
 
 class TodoTableViewController: UITableViewController {
 
+    @IBAction func updateTodoList(from segue: UIStoryboardSegue) {
+        if let editor = segue.source as? TaskTableViewController {
+            
+            if let newTask = editor.taskModel {
+                todoTasks.append(newTask)
+                tableView.reloadData()
+            }
+        }
+    }
     var todoTasks: [Task] = []
     
     override func viewDidLoad() {

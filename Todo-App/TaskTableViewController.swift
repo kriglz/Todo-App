@@ -36,16 +36,4 @@ class TaskTableViewController: UITableViewController {
         
         todoTaskLabel?.text = taskModel?.title
     }
-    
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    
 }
