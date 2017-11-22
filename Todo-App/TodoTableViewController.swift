@@ -13,10 +13,11 @@ class TodoTableViewController: UITableViewController {
     @IBAction func updateTodoList(from segue: UIStoryboardSegue) {
         if let editor = segue.source as? TaskTableViewController {
             
-            if let newTask = editor.taskModel {
-                todoTasks.append(newTask)
-                tableView.reloadData()
-            }
+            tableView.reloadData()
+
+//            
+//            if let newTask = editor.taskModel {
+//            }
         }
     }
     var todoTasks: [Task] = []
@@ -94,7 +95,9 @@ class TodoTableViewController: UITableViewController {
         if segue.identifier == "addTask" {
             if let destinationViewController = (segue.destination.contents as? TaskTableViewController) {
                 destinationViewController.navigationItem.title = "New task"
-                destinationViewController.taskModel = Task.init(title: "")
+                let newTask = Task.init(title: "")
+                todoTasks.append(newTask)
+                destinationViewController.taskModel = newTask
             }
         }
     }

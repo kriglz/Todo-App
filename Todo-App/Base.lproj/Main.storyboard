@@ -53,8 +53,8 @@
                                                         </label>
                                                     </subviews>
                                                 </stackView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="uVZ-Cq-XmW">
-                                                    <rect key="frame" x="62" y="19" width="267" height="34"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="uVZ-Cq-XmW">
+                                                    <rect key="frame" x="62" y="16.5" width="267" height="39"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7n0-Bb-K53">
                                                             <rect key="frame" x="0.0" y="0.0" width="267" height="10.5"/>
@@ -62,11 +62,11 @@
                                                                 <constraint firstAttribute="height" constant="10" id="DDb-wW-F30"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
-                                                            <nil key="textColor"/>
+                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MyTask" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D6B-6f-Aww">
-                                                            <rect key="frame" x="0.0" y="13.5" width="267" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="18.5" width="267" height="20.5"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -162,6 +162,9 @@
                                                     <date key="date" timeIntervalSinceReferenceDate="533069218.133008">
                                                         <!--2017-11-22 18:46:58 +0000-->
                                                     </date>
+                                                    <connections>
+                                                        <action selector="setDueDate:" destination="XA3-k6-bPq" eventType="valueChanged" id="F1s-de-KUW"/>
+                                                    </connections>
                                                 </datePicker>
                                             </subviews>
                                             <constraints>

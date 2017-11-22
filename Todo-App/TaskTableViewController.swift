@@ -8,29 +8,30 @@
 
 import UIKit
 
-class TaskTableViewController: UITableViewController, UITextViewDelegate {
+class TaskTableViewController: UITableViewController, UITextViewDelegate, UIPickerViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         todoTaskLabel.delegate = self
         
+        
         if taskModel != nil {
             updateUI()
         }
-
     }
-    
     
     @IBOutlet weak var todoTaskLabel: UITextView!
     @IBOutlet weak var dateLabel: UIDatePicker!
     @IBOutlet weak var taskPriorityControler: UISegmentedControl!
     
-    var taskModel: Task? {
-        didSet {
-            updateUI()
-        }
+    @IBAction func setDueDate(_ sender: UIDatePicker) {
+        taskModel?.dueDate = sender.date
     }
+    
+    var taskModel: Task?
 
+
+    
     private func updateUI(){
         dateLabel?.date = taskModel!.dueDate
 
@@ -49,25 +50,17 @@ class TaskTableViewController: UITableViewController, UITextViewDelegate {
         }
     }
     
+    func textViewDidChange(_ textView: UITextView) {
+        taskModel?.title = todoTaskLabel.text
+    }
+    
+    
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        
-        if(text == "\n"){
+        if text == "\n" {
             textView.resignFirstResponder()
             return false
         } else {
             return true
         }
     }
-
-    
-//
-//    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-//
-//        if indexPath.section == 0 || indexPath.section == 1 {
-//                return true
-//        }
-//        return false
-//    }
-
-    
 }

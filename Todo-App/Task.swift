@@ -18,7 +18,7 @@ class Task {
     var title: String
     
     /// The due date for the task.
-    let dueDate: Date
+    var dueDate: Date
     
     /// The level of priority of the task.
     var priority: TaskPriority
