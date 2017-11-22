@@ -28,7 +28,7 @@ class Task {
         self.isCompleted = false
         self.title = title
         self.dueDate = Date()
-        self.priority = .medium
+        self.priority = .none
     }
 
 }

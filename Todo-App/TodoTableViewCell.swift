@@ -13,6 +13,8 @@ class TodoTableViewCell: UITableViewCell {
     @IBOutlet weak var completedButton: UIButton!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var todoTaskLabel: UILabel!
+    @IBOutlet weak var priorityLabel: UILabel!
+    
     var taskModel: Task! {
         didSet {
             updateUI()
@@ -36,6 +38,18 @@ class TodoTableViewCell: UITableViewCell {
             completedButton.isSelected = true
         } else {
             completedButton.isSelected = false
+        }
+        
+        switch taskModel.priority {
+        case .high:
+            priorityLabel.text = "!!!"
+        case .medium:
+            priorityLabel.text = "!!"
+        case .low:
+            priorityLabel.text = "!"
+        default:
+            priorityLabel.text = ""
+
         }
     }
     
