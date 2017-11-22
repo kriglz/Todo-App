@@ -9,7 +9,7 @@
 import UIKit
 
 /// A model object which represents one item in a to do list.
-struct Task {
+class Task {
     
     /// A boolean which indicates if the task has been completed.
     var isCompleted: Bool
