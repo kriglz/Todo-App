@@ -1,5 +1,5 @@
 //
-//  todoTableViewController.swift
+//  TodoTableViewController.swift
 //  Todo-App
 //
 //  Created by Kristina Gelzinyte on 11/21/17.
@@ -8,19 +8,15 @@
 
 import UIKit
 
-class todoTableViewController: UITableViewController {
+class TodoTableViewController: UITableViewController {
 
-    var todoTasks = [Array<Task>]()
-
-    
+    var todoTasks: [Task] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-          
+        
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
-        
-        
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false

@@ -101,12 +101,13 @@
 		89C994241FC4D3230006B43C /* Todo-App */ = {
 			isa = PBXGroup;
 			children = (
-				89C994531FC4D5120006B43C /* Supporting Files */,
+				89C994251FC4D3230006B43C /* AppDelegate.swift */,
 				89C994311FC4D3230006B43C /* Info.plist */,
 				89C994541FC4DB4D0006B43C /* TodoTableViewController.swift */,
 				896E519C1FC4FC510079A346 /* Task.swift */,
 				896E519A1FC4EACE0079A346 /* TodoTableViewCell.swift */,
 				89C994291FC4D3230006B43C /* Main.storyboard */,
+				89C994531FC4D5120006B43C /* Supporting Files */,
 			);
 			path = "Todo-App";
 			sourceTree = "<group>";
@@ -132,7 +133,6 @@
 		89C994531FC4D5120006B43C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				89C994251FC4D3230006B43C /* AppDelegate.swift */,
 				89C9942C1FC4D3230006B43C /* Assets.xcassets */,
 				89C9942E1FC4D3230006B43C /* LaunchScreen.storyboard */,
 			);
