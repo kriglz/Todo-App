@@ -19,24 +19,20 @@ class TaskTableViewController: UITableViewController {
 
     }
     
-    @IBOutlet weak var todoTaskLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
+    
+    @IBOutlet weak var dateLabel: UIDatePicker!
+    @IBOutlet weak var todoTaskLabel: UITextField!
     @IBOutlet weak var taskPriorityControler: UISegmentedControl!
     
-    var taskModel: Task?{
+    var taskModel: Task? {
         didSet {
             updateUI()
         }
     }
 
-    
     private func updateUI(){
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM d, h:mm a"
-        dateLabel?.text = dateFormatter.string(from: taskModel!.dueDate)
-        
-        
+        dateLabel?.date = taskModel!.dueDate
+
         todoTaskLabel?.text = taskModel!.title
         
 
@@ -51,4 +47,15 @@ class TaskTableViewController: UITableViewController {
             taskPriorityControler?.selectedSegmentIndex = 0
         }
     }
+    
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        
+        if indexPath.section == 0 || indexPath.section == 1 {
+                return true
+        }
+        return false
+    }
+
+    
 }
