@@ -15,6 +15,11 @@ class TodoTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        let exampleTask = Task(title: "Wash dishes")
+        todoTasks.append(exampleTask)
+        
+        
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         
@@ -42,9 +47,9 @@ class TodoTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "task", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "task", for: indexPath) as! TodoTableViewCell
 
-        // Configure the cell...
+        cell.taskModel = todoTasks[indexPath.row]
 
         return cell
     }

@@ -9,6 +9,12 @@
 import UIKit
 
 class TodoTableViewCell: UITableViewCell {
+    
+    var taskModel: Task? = nil {
+        didSet {
+            self.todoTaskLabel.text = taskModel?.title 
+        }
+    }
 
     @IBAction func checkboxButton(_ sender: UIButton) {
         if sender.isSelected {
