@@ -17,8 +17,8 @@ class Task {
     /// A string which should describe what the task is all about.
     var title: String
     
-    /// The time at which the date was first created.
-    let created: Date
+    /// The due date for the task.
+    let dueDate: Date
     
     /// The level of priority of the task.
     var priority: TaskPriority
@@ -27,7 +27,7 @@ class Task {
     init(title: String) {
         self.isCompleted = false
         self.title = title
-        self.created = Date()
+        self.dueDate = Date()
         self.priority = .medium
     }
 
@@ -37,4 +37,5 @@ enum TaskPriority {
     case high
     case medium
     case low
+    case none
 }

@@ -18,6 +18,8 @@ class TodoTableViewController: UITableViewController {
         
         let exampleTask = Task(title: "Wash dishes")
         todoTasks.append(exampleTask)
+        todoTasks.append(exampleTask)
+
         
         
         tableView.estimatedRowHeight = tableView.rowHeight
@@ -36,12 +38,10 @@ class TodoTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return todoTasks.count
     }
 
@@ -61,7 +61,8 @@ class TodoTableViewController: UITableViewController {
  
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.delete) {
-//            userDefaultsManager.twitterSearchHistory.remove(at: indexPath.row)
+            
+            todoTasks.remove(at: indexPath.row)
             tableView.reloadData()
         }
     }
@@ -82,8 +83,32 @@ class TodoTableViewController: UITableViewController {
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "task" {
+            if let destinationViewController = (segue.destination.contents as? TaskTableViewController) {
+                destinationViewController.navigationItem.title = "Edit task"
+                
+                if let indexOfselectedRow = tableView.indexPathForSelectedRow?.row {
+                    destinationViewController.taskModel = todoTasks[indexOfselectedRow]
+                }
+            }
+        }
+        if segue.identifier == "addTask" {
+            if let destinationViewController = (segue.destination.contents as? TaskTableViewController) {
+                destinationViewController.navigationItem.title = "New task"
+            }
+        }
     }
 
+}
+
+extension UIViewController
+{
+    var contents: UIViewController {
+        if let navcon = self as? UINavigationController {
+            return navcon.visibleViewController ?? self
+        } else {
+            return self
+        }
+    }
 }

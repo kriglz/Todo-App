@@ -15,23 +15,22 @@ class TodoTableViewCell: UITableViewCell {
     @IBOutlet weak var todoTaskLabel: UILabel!
     var taskModel: Task! {
         didSet {
-            refreshAppearance()
+            updateUI()
         }
     }
 
     @IBAction func checkboxButton(_ sender: UIButton) {
         taskModel.isCompleted = !taskModel.isCompleted
 
-        refreshAppearance()
+        updateUI()
     }
     
-    private func refreshAppearance() {
+    private func updateUI() {
         todoTaskLabel.text = taskModel.title
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yyyy"
-        
-        dateLabel.text = dateFormatter.string(from: taskModel.created)
+        dateFormatter.dateFormat = "MMM d, h:mm a"        
+        dateLabel.text = dateFormatter.string(from: taskModel.dueDate)
         
         if taskModel.isCompleted {
             completedButton.isSelected = true
