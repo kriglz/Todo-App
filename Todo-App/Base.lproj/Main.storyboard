@@ -46,7 +46,7 @@
                                                 </label>
                                             </subviews>
                                         </stackView>
-                                        <button opaque="NO" multipleTouchEnabled="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CpL-99-oiq">
+                                        <button opaque="NO" multipleTouchEnabled="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CpL-99-oiq" userLabel="Completed Button">
                                             <rect key="frame" x="7" y="32" width="30" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="3hz-Zh-uUn"/>
@@ -70,6 +70,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="completedButton" destination="CpL-99-oiq" id="xjy-jr-gKE"/>
                                     <outlet property="dateLabel" destination="7n0-Bb-K53" id="vsc-wz-wKI"/>
                                     <outlet property="todoTaskLabel" destination="D6B-6f-Aww" id="ist-nG-PMm"/>
                                 </connections>

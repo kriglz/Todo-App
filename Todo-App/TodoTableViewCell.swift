@@ -10,31 +10,34 @@ import UIKit
 
 class TodoTableViewCell: UITableViewCell {
     
-    var taskModel: Task? = nil {
+    @IBOutlet weak var completedButton: UIButton!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var todoTaskLabel: UILabel!
+    var taskModel: Task! {
         didSet {
-            self.todoTaskLabel.text = taskModel?.title 
+            refreshAppearance()
         }
     }
 
     @IBAction func checkboxButton(_ sender: UIButton) {
-        if sender.isSelected {
-            sender.isSelected = false
+        taskModel.isCompleted = !taskModel.isCompleted
+
+        refreshAppearance()
+    }
+    
+    private func refreshAppearance() {
+        todoTaskLabel.text = taskModel.title
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        
+        dateLabel.text = dateFormatter.string(from: taskModel.created)
+        
+        if taskModel.isCompleted {
+            completedButton.isSelected = true
         } else {
-            sender.isSelected = true
+            completedButton.isSelected = false
         }
     }
     
-    
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var todoTaskLabel: UILabel!
-    
-    
-    
-    
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//
-//        // Configure the view for the selected state
-//    }
-
 }
