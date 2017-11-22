@@ -13,11 +13,23 @@ class TaskTableViewController: UITableViewController, UITextViewDelegate, UIPick
     override func viewDidLoad() {
         super.viewDidLoad()
         todoTaskLabel.delegate = self
-        
-        
+
         if taskModel != nil {
             updateUI()
         }
+        
+
+
+        placeholderLabel = UILabel()
+        placeholderLabel.text = "Enter new task..."
+        placeholderLabel.font = todoTaskLabel.font
+        placeholderLabel.textColor = UIColor.lightGray
+        placeholderLabel.sizeToFit()
+        todoTaskLabel.addSubview(placeholderLabel)
+        placeholderLabel.frame.origin = CGPoint(x: 5, y: 7)
+        placeholderLabel.isHidden = !todoTaskLabel.text.isEmpty
+
+        
         
         taskPriorityControler.addTarget(self, action: #selector(priorityChange), for: .valueChanged)
     }
@@ -35,6 +47,7 @@ class TaskTableViewController: UITableViewController, UITextViewDelegate, UIPick
         }
     }
     
+    var placeholderLabel : UILabel!
     @IBOutlet weak var todoTaskLabel: UITextView!
     @IBOutlet weak var dateLabel: UIDatePicker!
     @IBOutlet weak var taskPriorityControler: UISegmentedControl!
@@ -69,9 +82,11 @@ class TaskTableViewController: UITableViewController, UITextViewDelegate, UIPick
         }
     }
     
+    
     func textViewDidChange(_ textView: UITextView) {
         taskModel?.title = todoTaskLabel.text
     }
+    
     
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
@@ -79,6 +94,11 @@ class TaskTableViewController: UITableViewController, UITextViewDelegate, UIPick
             textView.resignFirstResponder()
             return false
         } else {
+            if textView.text.isEmpty {
+                placeholderLabel.isHidden = false
+            } else {
+                placeholderLabel.isHidden = true
+            }
             return true
         }
     }
