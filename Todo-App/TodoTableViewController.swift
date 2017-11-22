@@ -94,6 +94,7 @@ class TodoTableViewController: UITableViewController {
         if segue.identifier == "addTask" {
             if let destinationViewController = (segue.destination.contents as? TaskTableViewController) {
                 destinationViewController.navigationItem.title = "New task"
+                destinationViewController.taskModel = Task.init(title: "")
             }
         }
     }

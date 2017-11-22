@@ -8,10 +8,11 @@
 
 import UIKit
 
-class TaskTableViewController: UITableViewController {
+class TaskTableViewController: UITableViewController, UITextViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        todoTaskLabel.delegate = self
         
         if taskModel != nil {
             updateUI()
@@ -20,8 +21,8 @@ class TaskTableViewController: UITableViewController {
     }
     
     
+    @IBOutlet weak var todoTaskLabel: UITextView!
     @IBOutlet weak var dateLabel: UIDatePicker!
-    @IBOutlet weak var todoTaskLabel: UITextField!
     @IBOutlet weak var taskPriorityControler: UISegmentedControl!
     
     var taskModel: Task? {
@@ -48,14 +49,25 @@ class TaskTableViewController: UITableViewController {
         }
     }
     
-    
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         
-        if indexPath.section == 0 || indexPath.section == 1 {
-                return true
+        if(text == "\n"){
+            textView.resignFirstResponder()
+            return false
+        } else {
+            return true
         }
-        return false
     }
+
+    
+//
+//    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+//
+//        if indexPath.section == 0 || indexPath.section == 1 {
+//                return true
+//        }
+//        return false
+//    }
 
     
 }
