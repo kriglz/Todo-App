@@ -28,7 +28,6 @@ class TodoTableViewController: UITableViewController {
         
         let exampleTask = Task(title: "Wash dishes")
         todoTasks.append(exampleTask)
-        todoTasks.append(exampleTask)
 
         
         

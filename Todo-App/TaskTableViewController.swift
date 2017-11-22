@@ -18,6 +18,21 @@ class TaskTableViewController: UITableViewController, UITextViewDelegate, UIPick
         if taskModel != nil {
             updateUI()
         }
+        
+        taskPriorityControler.addTarget(self, action: #selector(priorityChange), for: .valueChanged)
+    }
+    
+    @objc func priorityChange() {
+        switch taskPriorityControler.selectedSegmentIndex {
+        case 1:
+            taskModel?.priority = .low
+        case 2:
+            taskModel?.priority = .medium
+        case 3:
+            taskModel?.priority = .high
+        default:
+            taskModel?.priority = .none
+        }
     }
     
     @IBOutlet weak var todoTaskLabel: UITextView!
@@ -27,6 +42,10 @@ class TaskTableViewController: UITableViewController, UITextViewDelegate, UIPick
     @IBAction func setDueDate(_ sender: UIDatePicker) {
         taskModel?.dueDate = sender.date
     }
+    
+    
+
+
     
     var taskModel: Task?
 
