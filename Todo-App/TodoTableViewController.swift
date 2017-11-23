@@ -13,12 +13,11 @@ class TodoTableViewController: UITableViewController {
 
     @IBAction func updateTodoList(from segue: UIStoryboardSegue) {
         if let editor = segue.source as? TaskTableViewController {
-            
             try? realm.write {
                 realm.add(editor.taskModel!)
             }
+            
             tableView.reloadData()
-
         }
     }
     
@@ -65,7 +64,6 @@ class TodoTableViewController: UITableViewController {
  
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.delete) {
-            
             try! realm.write {
                 realm.delete(todoList[indexPath.row])
             }
@@ -79,7 +77,6 @@ class TodoTableViewController: UITableViewController {
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         if segue.identifier == "task" {
             if let destinationViewController = (segue.destination.contents as? TaskTableViewController) {
                 destinationViewController.navigationItem.title = "Edit task"
@@ -91,6 +88,7 @@ class TodoTableViewController: UITableViewController {
                 }
             }
         }
+        
         if segue.identifier == "addTask" {
             if let destinationViewController = (segue.destination.contents as? TaskTableViewController) {
                 destinationViewController.navigationItem.title = "New task"
@@ -103,8 +101,8 @@ class TodoTableViewController: UITableViewController {
 
 }
 
-extension UIViewController
-{
+extension UIViewController {
+    
     var contents: UIViewController {
         if let navcon = self as? UINavigationController {
             return navcon.visibleViewController ?? self
@@ -112,4 +110,5 @@ extension UIViewController
             return self
         }
     }
+    
 }

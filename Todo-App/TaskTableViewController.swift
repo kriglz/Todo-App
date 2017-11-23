@@ -17,8 +17,6 @@ class TaskTableViewController: UITableViewController, UITextViewDelegate, UIPick
         if taskModel != nil {
             updateUI()
         }
-        
-
 
         placeholderLabel = UILabel()
         placeholderLabel.text = "Enter new task..."
@@ -28,8 +26,6 @@ class TaskTableViewController: UITableViewController, UITextViewDelegate, UIPick
         todoTaskLabel.addSubview(placeholderLabel)
         placeholderLabel.frame.origin = CGPoint(x: 5, y: 7)
         placeholderLabel.isHidden = !todoTaskLabel.text.isEmpty
-
-        
         
         taskPriorityControler.addTarget(self, action: #selector(priorityChange), for: .valueChanged)
     }
@@ -47,7 +43,6 @@ class TaskTableViewController: UITableViewController, UITextViewDelegate, UIPick
             taskModel?.priority = .none
         }
         try? realm.commitWrite()
-
     }
     
     var placeholderLabel : UILabel!
@@ -61,15 +56,12 @@ class TaskTableViewController: UITableViewController, UITextViewDelegate, UIPick
         try? realm.commitWrite()
     }
     
-    
-    var taskModel: Task? 
-
+    var taskModel: Task?
     
     private func updateUI(){
         dateLabel?.date = taskModel!.dueDate
 
         todoTaskLabel?.text = taskModel!.title
-        
 
         switch taskModel!.priority {
         case .high:
@@ -85,7 +77,6 @@ class TaskTableViewController: UITableViewController, UITextViewDelegate, UIPick
     
     
     func textViewDidChange(_ textView: UITextView) {
-        
         realm.beginWrite()
         taskModel?.title = todoTaskLabel.text
         try? realm.commitWrite()
@@ -96,6 +87,7 @@ class TaskTableViewController: UITableViewController, UITextViewDelegate, UIPick
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if text == "\n" {
             textView.resignFirstResponder()
+            
             return false
         } else {
             if textView.text.isEmpty {
@@ -103,7 +95,9 @@ class TaskTableViewController: UITableViewController, UITextViewDelegate, UIPick
             } else {
                 placeholderLabel.isHidden = true
             }
+            
             return true
         }
     }
+    
 }

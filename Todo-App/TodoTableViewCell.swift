@@ -51,7 +51,6 @@ class TodoTableViewCell: UITableViewCell {
             priorityLabel.text = "!"
         default:
             priorityLabel.text = ""
-
         }
     }
     
