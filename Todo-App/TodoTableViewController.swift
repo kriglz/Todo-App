@@ -24,7 +24,9 @@ class TodoTableViewController: UITableViewController {
     
     var todoList: Results<Task> {
         get {
-            return realm.objects(Task.self)
+            var result = realm.objects(Task.self)
+            result = result.sorted(byKeyPath: "dueDate", ascending: true)
+            return result
         }
     }
     
