@@ -12,6 +12,9 @@ import RealmSwift
 /// A model object which represents one item in a to do list.
 class Task: Object {
     
+    /// Primary key for the object in realm.
+    @objc let id: String = UUID().uuidString
+    
     /// A boolean which indicates if the task has been completed.
     @objc dynamic var isCompleted: Bool = false
     
@@ -23,36 +26,6 @@ class Task: Object {
     
     /// The level of priority of the task.
     @objc dynamic var priority: TaskPriority = .none
-    
-    /// Creates a task with a specified title. Uses default values for all other properties.
-//    init(title: String) {
-//        self.isCompleted = false
-//        self.title = title
-//        self.dueDate = Date()
-//        self.priority = .none
-//
-//        super.init()
-//    }
-
-  
-    
-//    required init() {
-//        self.isCompleted = false
-//        self.title = ""
-//        self.dueDate = Date()
-//        self.priority = .none
-//
-//        super.init()
-//    }
-
-//    required init(realm: RLMRealm, schema: RLMObjectSchema) {
-//        fatalError("init(realm:schema:) has not been implemented")
-//    }
-//
-//    required init(value: Any, schema: RLMSchema) {
-//        fatalError("init(value:schema:) has not been implemented")
-//    }
-
     
 }
 

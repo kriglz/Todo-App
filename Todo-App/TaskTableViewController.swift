@@ -35,6 +35,7 @@ class TaskTableViewController: UITableViewController, UITextViewDelegate, UIPick
     }
     
     @objc func priorityChange() {
+        realm.beginWrite()
         switch taskPriorityControler.selectedSegmentIndex {
         case 1:
             taskModel?.priority = .low
@@ -45,6 +46,8 @@ class TaskTableViewController: UITableViewController, UITextViewDelegate, UIPick
         default:
             taskModel?.priority = .none
         }
+        try? realm.commitWrite()
+
     }
     
     var placeholderLabel : UILabel!
@@ -53,15 +56,13 @@ class TaskTableViewController: UITableViewController, UITextViewDelegate, UIPick
     @IBOutlet weak var taskPriorityControler: UISegmentedControl!
     
     @IBAction func setDueDate(_ sender: UIDatePicker) {
+        realm.beginWrite()
         taskModel?.dueDate = sender.date
+        try? realm.commitWrite()
     }
     
     
-
-
-    
-    var taskModel: Task?
-
+    var taskModel: Task? 
 
     
     private func updateUI(){
@@ -84,7 +85,10 @@ class TaskTableViewController: UITableViewController, UITextViewDelegate, UIPick
     
     
     func textViewDidChange(_ textView: UITextView) {
+        
+        realm.beginWrite()
         taskModel?.title = todoTaskLabel.text
+        try? realm.commitWrite()
     }
     
     

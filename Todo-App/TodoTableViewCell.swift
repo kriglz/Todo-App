@@ -22,7 +22,9 @@ class TodoTableViewCell: UITableViewCell {
     }
 
     @IBAction func checkboxButton(_ sender: UIButton) {
+        realm.beginWrite()
         taskModel.isCompleted = !taskModel.isCompleted
+        try? realm.commitWrite()
 
         updateUI()
     }
