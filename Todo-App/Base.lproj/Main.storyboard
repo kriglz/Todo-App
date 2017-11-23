@@ -98,18 +98,28 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="sPb-89-Bb0">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" segmentControlStyle="bar" selectedSegmentIndex="0" id="0Ai-RQ-rQz">
+                            <rect key="frame" x="39.5" y="7" width="285" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Sort by date"/>
+                                <segment title="priority"/>
+                                <segment title="completed"/>
+                            </segments>
+                        </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" width="12" systemItem="add" id="Xes-OD-yOs">
                             <inset key="largeContentSizeImageInsets" minX="0.0" minY="1" maxX="0.0" maxY="0.0"/>
                             <color key="tintColor" red="0.0" green="0.40000000000000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="XA3-k6-bPq" kind="show" identifier="addTask" id="jaY-ch-rtl"/>
+                                <segue destination="XA3-k6-bPq" kind="push" identifier="addTask" id="bEw-Bh-zR1"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fhh-TJ-J2a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1511" y="-52"/>
+            <point key="canvasLocation" x="1509.5999999999999" y="-52.623688155922046"/>
         </scene>
         <!--Task Table View Controller-->
         <scene sceneID="oKw-Qr-YaY">
@@ -261,6 +271,6 @@
         <image name="xCheckbox" width="90" height="90"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mtr-aH-A0L"/>
+        <segue reference="bEw-Bh-zR1"/>
     </inferredMetricsTieBreakers>
 </document>

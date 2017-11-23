@@ -21,6 +21,12 @@ class TodoTableViewController: UITableViewController {
         }
     }
     
+   
+    
+    
+    
+    
+    
     var todoList: Results<Task> {
         get {
             var result = realm.objects(Task.self)
@@ -87,16 +93,14 @@ class TodoTableViewController: UITableViewController {
                     destinationViewController.taskModel = newTask
                 }
             }
-        }
-        
-        if segue.identifier == "addTask" {
+        } else if segue.identifier == "addTask" {
             if let destinationViewController = (segue.destination.contents as? TaskTableViewController) {
                 destinationViewController.navigationItem.title = "New task"
                 let newTask = Task()
                 newTask.title = ""
                 destinationViewController.taskModel = newTask
             }
-        }
+        } 
     }
 
 }
