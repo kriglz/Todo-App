@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		894877FF1FC6649600BFA081 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 894878001FC6649600BFA081 /* Realm.framework */; };
 		896E519B1FC4EACE0079A346 /* TodoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896E519A1FC4EACE0079A346 /* TodoTableViewCell.swift */; };
 		896E519D1FC4FC510079A346 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896E519C1FC4FC510079A346 /* Task.swift */; };
+		8979E28F1FC65BBA00ABBA71 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8979E2901FC65BBA00ABBA71 /* RealmSwift.framework */; };
 		89A8D4411FC548E300BFC007 /* TaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A8D4401FC548E300BFC007 /* TaskTableViewController.swift */; };
 		89C994261FC4D3230006B43C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C994251FC4D3230006B43C /* AppDelegate.swift */; };
 		89C9942B1FC4D3230006B43C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89C994291FC4D3230006B43C /* Main.storyboard */; };
@@ -39,8 +41,10 @@
 
 /* Begin PBXFileReference section */
 		2367B7890819407E976C34A8 /* Pods_Todo_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Todo_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		894878001FC6649600BFA081 /* Realm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Realm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		896E519A1FC4EACE0079A346 /* TodoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTableViewCell.swift; sourceTree = "<group>"; };
 		896E519C1FC4FC510079A346 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		8979E2901FC65BBA00ABBA71 /* RealmSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		89A8D4401FC548E300BFC007 /* TaskTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewController.swift; sourceTree = "<group>"; };
 		89C994221FC4D3230006B43C /* Todo-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Todo-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		89C994251FC4D3230006B43C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -64,6 +68,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				894877FF1FC6649600BFA081 /* Realm.framework in Frameworks */,
+				8979E28F1FC65BBA00ABBA71 /* RealmSwift.framework in Frameworks */,
 				E7AFE536E65CB517DC2C4C5D /* Pods_Todo_App.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -88,6 +94,8 @@
 		01607C21FC3C79146ABC3E69 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				894878001FC6649600BFA081 /* Realm.framework */,
+				8979E2901FC65BBA00ABBA71 /* RealmSwift.framework */,
 				2367B7890819407E976C34A8 /* Pods_Todo_App.framework */,
 			);
 			name = Frameworks;

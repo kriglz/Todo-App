@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class TodoTableViewController: UITableViewController {
 
@@ -15,32 +16,40 @@ class TodoTableViewController: UITableViewController {
             
             tableView.reloadData()
 
-//            
+//
 //            if let newTask = editor.taskModel {
 //            }
         }
     }
+    
+
     var todoTasks: [Task] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        let exampleTask = Task(title: "Wash dishes")
+     
+        let exampleTask = Task()
         todoTasks.append(exampleTask)
-
+ 
         
+        
+//        let realm = try! Realm()
+//
+//        try! realm.write {
+//            realm.add(todoTasks, update: true)
+//        }
+//
+//        let result = try? realm.objects(Task.self)
+//        print(result)
         
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
+    
+    
+    
+    
 
     
 
@@ -94,7 +103,8 @@ class TodoTableViewController: UITableViewController {
         if segue.identifier == "addTask" {
             if let destinationViewController = (segue.destination.contents as? TaskTableViewController) {
                 destinationViewController.navigationItem.title = "New task"
-                let newTask = Task.init(title: "")
+                let newTask = Task()
+                newTask.title = ""
                 todoTasks.append(newTask)
                 destinationViewController.taskModel = newTask
             }
