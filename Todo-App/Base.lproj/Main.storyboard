@@ -119,6 +119,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="sortingControl" destination="0Ai-RQ-rQz" id="WWg-eM-LuT"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fhh-TJ-J2a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

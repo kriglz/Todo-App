@@ -30,7 +30,7 @@ class TaskTableViewController: UITableViewController, UITextViewDelegate, UIPick
         taskPriorityControler.addTarget(self, action: #selector(priorityChange), for: .valueChanged)
     }
     
-    @objc func priorityChange() {
+    @objc func priorityChange(){
         realm.beginWrite()
         switch taskPriorityControler.selectedSegmentIndex {
         case 1:

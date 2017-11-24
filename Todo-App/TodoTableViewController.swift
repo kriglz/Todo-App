@@ -9,6 +9,31 @@
 import UIKit
 import RealmSwift
 
+
+class UserDefaultsManager {
+    // Create UserDefaults
+    private let sortDefault = UserDefaults.standard
+    private let sortKey = "sortBy"
+    
+    var sortByDefault: String {
+        get {
+            // Get the String from UserDefaults
+            if let sortBy = sortDefault.string(forKey: sortKey) {
+                return sortBy
+            } else {
+                return "priority"
+            }
+        }
+        set {
+            // Save String value to UserDefaults
+            sortDefault.set(newValue, forKey: sortKey)
+        }
+    }
+}
+
+
+
+
 class TodoTableViewController: UITableViewController {
 
     @IBAction func updateTodoList(from segue: UIStoryboardSegue) {
@@ -16,12 +41,25 @@ class TodoTableViewController: UITableViewController {
             try? realm.write {
                 realm.add(editor.taskModel!)
             }
-            
             tableView.reloadData()
         }
     }
     
-    var sortingKey: String = "dueDate"
+    var todoList: Results<Task> {
+        get {
+            var newList = realm.objects(Task.self)
+            newList = newList.sorted(byKeyPath: sortingKey, ascending: sortingAscending)
+            return newList
+        }
+    }
+    
+    
+    var sortingKey: String = UserDefaultsManager().sortByDefault {
+        didSet {
+            UserDefaultsManager().sortByDefault = sortingKey
+            print(UserDefaultsManager().sortByDefault)
+        }
+    }
     var sortingAscending: Bool = true
 
     @IBAction func sortingControl(_ sender: UISegmentedControl) {
@@ -41,29 +79,16 @@ class TodoTableViewController: UITableViewController {
         }
         tableView.reloadData()
     }
-    
-    
-    
-    
-    
-    
-    var todoList: Results<Task> {
-        get {
-            var newList = realm.objects(Task.self)
-            newList = newList.sorted(byKeyPath: sortingKey, ascending: sortingAscending)
-            return newList
-        }
-    }
-    
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
- 
+        
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
     }
 
- 
-
+    
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
