@@ -107,6 +107,9 @@
                                 <segment title="priority"/>
                                 <segment title="completed"/>
                             </segments>
+                            <connections>
+                                <action selector="sortingControl:" destination="vaY-NM-NTu" eventType="valueChanged" id="LJg-JI-OKK"/>
+                            </connections>
                         </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" width="12" systemItem="add" id="Xes-OD-yOs">
                             <inset key="largeContentSizeImageInsets" minX="0.0" minY="1" maxX="0.0" maxY="0.0"/>

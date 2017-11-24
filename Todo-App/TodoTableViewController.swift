@@ -21,7 +21,27 @@ class TodoTableViewController: UITableViewController {
         }
     }
     
-   
+    var sortingKey: String = "dueDate"
+    var sortingAscending: Bool = true
+
+    @IBAction func sortingControl(_ sender: UISegmentedControl) {
+        
+        switch sender.selectedSegmentIndex {
+        case 0:
+            sortingKey = "dueDate"
+            sortingAscending = true
+        case 1:
+            sortingKey = "priority"
+            sortingAscending = true
+        case 2:
+            sortingKey = "isCompleted"
+            sortingAscending = false
+        default:
+            break
+        }
+        tableView.reloadData()
+    }
+    
     
     
     
@@ -29,9 +49,9 @@ class TodoTableViewController: UITableViewController {
     
     var todoList: Results<Task> {
         get {
-            var result = realm.objects(Task.self)
-            result = result.sorted(byKeyPath: "dueDate", ascending: true)
-            return result
+            var newList = realm.objects(Task.self)
+            newList = newList.sorted(byKeyPath: sortingKey, ascending: sortingAscending)
+            return newList
         }
     }
     
