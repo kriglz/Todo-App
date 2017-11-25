@@ -108,19 +108,19 @@
                                 <segment title="completed"/>
                             </segments>
                             <connections>
-                                <action selector="sortingControl:" destination="vaY-NM-NTu" eventType="valueChanged" id="LJg-JI-OKK"/>
+                                <action selector="sortingControl:" destination="vaY-NM-NTu" eventType="valueChanged" id="efL-3O-b4Z"/>
                             </connections>
                         </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" width="12" systemItem="add" id="Xes-OD-yOs">
                             <inset key="largeContentSizeImageInsets" minX="0.0" minY="1" maxX="0.0" maxY="0.0"/>
                             <color key="tintColor" red="0.0" green="0.40000000000000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="XA3-k6-bPq" kind="push" identifier="addTask" id="bEw-Bh-zR1"/>
+                                <segue destination="XA3-k6-bPq" kind="show" identifier="addTask" id="bEw-Bh-zR1"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="sortingControl" destination="0Ai-RQ-rQz" id="WWg-eM-LuT"/>
+                        <outlet property="sortingControl" destination="0Ai-RQ-rQz" id="igV-uL-ecA"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fhh-TJ-J2a" userLabel="First Responder" sceneMemberID="firstResponder"/>

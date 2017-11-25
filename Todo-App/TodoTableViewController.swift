@@ -63,7 +63,6 @@ class TodoTableViewController: UITableViewController {
     var sortingAscending: Bool = true
 
     @IBAction func sortingControl(_ sender: UISegmentedControl) {
-        
         switch sender.selectedSegmentIndex {
         case 0:
             sortingKey = "dueDate"
@@ -79,12 +78,28 @@ class TodoTableViewController: UITableViewController {
         }
         tableView.reloadData()
     }
- 
+    
+    @IBOutlet weak var sortingControl: UISegmentedControl!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
+        
+        switch sortingKey {
+        case "dueDate":
+            sortingControl.selectedSegmentIndex = 0
+            sortingAscending = true
+        case "priority":
+            sortingControl.selectedSegmentIndex = 1
+            sortingAscending = true
+        case "isCompleted":
+            sortingControl.selectedSegmentIndex = 2
+            sortingAscending = false
+        default:
+            sortingControl.selectedSegmentIndex = -1
+        }
     }
 
     
