@@ -48,7 +48,8 @@ class TodoTableViewController: UITableViewController {
     var todoList: Results<Task> {
         get {
             var newList = realm.objects(Task.self)
-            newList = newList.sorted(byKeyPath: sortingKey, ascending: sortingAscending)
+            newList = newList.sorted(byKeyPath: sortingKey, ascending: true)
+
             return newList
         }
     }
@@ -57,22 +58,17 @@ class TodoTableViewController: UITableViewController {
     var sortingKey: String = UserDefaultsManager().sortByDefault {
         didSet {
             UserDefaultsManager().sortByDefault = sortingKey
-            print(UserDefaultsManager().sortByDefault)
         }
     }
-    var sortingAscending: Bool = true
 
     @IBAction func sortingControl(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
             sortingKey = "dueDate"
-            sortingAscending = true
         case 1:
             sortingKey = "priority"
-            sortingAscending = true
         case 2:
             sortingKey = "isCompleted"
-            sortingAscending = false
         default:
             break
         }
@@ -90,14 +86,11 @@ class TodoTableViewController: UITableViewController {
         switch sortingKey {
         case "dueDate":
             sortingControl.selectedSegmentIndex = 0
-            sortingAscending = true
         case "priority":
             sortingControl.selectedSegmentIndex = 1
-            sortingAscending = true
         case "isCompleted":
             sortingControl.selectedSegmentIndex = 2
-            sortingAscending = false
-        default:
+         default:
             sortingControl.selectedSegmentIndex = -1
         }
     }
