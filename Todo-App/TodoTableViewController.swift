@@ -36,6 +36,13 @@ class UserDefaultsManager {
 
 class TodoTableViewController: UITableViewController {
 
+    
+    @IBAction func search(_ sender: UIBarButtonItem) {
+        searchBar.isHidden = false
+    }
+    
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     @IBAction func updateTodoList(from segue: UIStoryboardSegue) {
         if let editor = segue.source as? TaskTableViewController {
             try? realm.write {
@@ -93,6 +100,7 @@ class TodoTableViewController: UITableViewController {
          default:
             sortingControl.selectedSegmentIndex = -1
         }
+        
     }
 
     

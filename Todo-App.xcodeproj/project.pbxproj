@@ -12,6 +12,7 @@
 		896E519D1FC4FC510079A346 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896E519C1FC4FC510079A346 /* Task.swift */; };
 		8979E28F1FC65BBA00ABBA71 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8979E2901FC65BBA00ABBA71 /* RealmSwift.framework */; };
 		89A8D4411FC548E300BFC007 /* TaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A8D4401FC548E300BFC007 /* TaskTableViewController.swift */; };
+		89B0B2AC1FCA2A1D006BAC9E /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B0B2AB1FCA2A1D006BAC9E /* SearchViewController.swift */; };
 		89C994261FC4D3230006B43C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C994251FC4D3230006B43C /* AppDelegate.swift */; };
 		89C9942B1FC4D3230006B43C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89C994291FC4D3230006B43C /* Main.storyboard */; };
 		89C9942D1FC4D3230006B43C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89C9942C1FC4D3230006B43C /* Assets.xcassets */; };
@@ -46,6 +47,7 @@
 		896E519C1FC4FC510079A346 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		8979E2901FC65BBA00ABBA71 /* RealmSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		89A8D4401FC548E300BFC007 /* TaskTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewController.swift; sourceTree = "<group>"; };
+		89B0B2AB1FCA2A1D006BAC9E /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		89C994221FC4D3230006B43C /* Todo-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Todo-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		89C994251FC4D3230006B43C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		89C9942A1FC4D3230006B43C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				896E519A1FC4EACE0079A346 /* TodoTableViewCell.swift */,
 				89A8D4401FC548E300BFC007 /* TaskTableViewController.swift */,
 				89C994291FC4D3230006B43C /* Main.storyboard */,
+				89B0B2AB1FCA2A1D006BAC9E /* SearchViewController.swift */,
 				89C994531FC4D5120006B43C /* Supporting Files */,
 			);
 			path = "Todo-App";
@@ -367,6 +370,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89B0B2AC1FCA2A1D006BAC9E /* SearchViewController.swift in Sources */,
 				89A8D4411FC548E300BFC007 /* TaskTableViewController.swift in Sources */,
 				896E519D1FC4FC510079A346 /* Task.swift in Sources */,
 				89C994261FC4D3230006B43C /* AppDelegate.swift in Sources */,
