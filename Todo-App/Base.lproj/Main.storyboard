@@ -19,13 +19,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" searchBarStyle="prominent" placeholder="Search" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AN5-ee-JVv">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="87"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="87" id="ne3-5F-Zr2"/>
-                                </constraints>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6B8-kM-Wjs" userLabel="Filling View">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="71"/>
+                                <color key="backgroundColor" red="0.96079081296920776" green="0.9607728123664856" blue="0.96078497171401978" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </view>
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AN5-ee-JVv">
+                                <rect key="frame" x="0.0" y="15" width="375" height="56"/>
                                 <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes" returnKeyType="done"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes" returnKeyType="search"/>
                                 <scopeButtonTitles>
                                     <string>Title</string>
                                     <string>Title</string>
@@ -34,8 +35,12 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.3885113441780822" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="6B8-kM-Wjs" firstAttribute="bottom" secondItem="AN5-ee-JVv" secondAttribute="bottom" id="9sD-ZA-dGB"/>
                             <constraint firstAttribute="trailing" secondItem="AN5-ee-JVv" secondAttribute="trailing" id="HC7-Oo-LYK"/>
-                            <constraint firstItem="AN5-ee-JVv" firstAttribute="top" secondItem="lz9-hX-7KR" secondAttribute="top" id="gNd-pr-bDe"/>
+                            <constraint firstItem="6B8-kM-Wjs" firstAttribute="leading" secondItem="AN5-ee-JVv" secondAttribute="leading" id="Nm2-ec-mvl"/>
+                            <constraint firstItem="6B8-kM-Wjs" firstAttribute="trailing" secondItem="AN5-ee-JVv" secondAttribute="trailing" id="ere-Da-4gs"/>
+                            <constraint firstItem="AN5-ee-JVv" firstAttribute="top" secondItem="lz9-hX-7KR" secondAttribute="top" constant="15" id="gNd-pr-bDe"/>
+                            <constraint firstItem="6B8-kM-Wjs" firstAttribute="top" secondItem="lz9-hX-7KR" secondAttribute="top" id="pD5-mw-Tjl"/>
                             <constraint firstItem="AN5-ee-JVv" firstAttribute="leading" secondItem="lz9-hX-7KR" secondAttribute="leading" id="qgT-by-wai"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3rM-k2-MhR"/>
@@ -43,6 +48,9 @@
                     <navigationItem key="navigationItem" id="jYg-o1-ss6"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="searchBar" destination="AN5-ee-JVv" id="8N2-Mn-hZR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j1c-Gy-Iph" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <searchDisplayController id="rgj-kA-UMJ">

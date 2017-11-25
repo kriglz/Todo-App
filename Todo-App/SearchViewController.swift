@@ -8,13 +8,33 @@
 
 import UIKit
 
-class SearchViewController: UIViewController {
+class SearchViewController: UIViewController, UISearchBarDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        searchBar.delegate = self
+        searchBar.showsCancelButton = true
+        
+        let viewDissmisRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissController))
+        self.view.addGestureRecognizer(viewDissmisRecognizer)
     }
 
+    @objc func dismissController() {
+        searchBar.resignFirstResponder()
+        self.dismiss(animated: true)
+    }
+    
+    @IBOutlet weak var searchBar: UISearchBar!
+   
+    
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        dismissController()
+    }
    
 }
