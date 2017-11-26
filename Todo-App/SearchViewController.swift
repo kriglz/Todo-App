@@ -16,11 +16,13 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDa
         
         searchBar.delegate = self
         searchBar.showsCancelButton = true
+        searchBar.becomeFirstResponder()
         
         let viewDissmisRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissController))
         self.view.addGestureRecognizer(viewDissmisRecognizer)
         
         searchResultTableView.isHidden = true
+        
 
     }
 
@@ -32,15 +34,24 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDa
     
     @IBOutlet weak var searchBar: UISearchBar!
    
-    
+    private var searchKeyword: String?
     
     var searchResults: Results<Task> {
         get {
             var results = realm.objects(Task.self)
-            results = results.sorted(byKeyPath: "title", ascending: true)
+
+            if let searchKeyword = searchKeyword {
+                let predicate = NSPredicate(format: "title CONTAINS[c] %@ ", searchKeyword)
+                
+                results = results.filter(predicate).sorted(byKeyPath: "dueDate", ascending: true)
+            }
             return results
+
         }
     }
+    
+    
+    
     
     
     @IBOutlet weak var searchResultTableView: UITableView!
@@ -50,9 +61,15 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDa
         if (searchBar.text?.isEmpty)! {
             searchResultTableView.isHidden = true
         } else {
+            searchKeyword = searchBar.text
             searchResultTableView.isHidden = false
+            searchResultTableView.reloadData()
         }
     }
+    
+    
+    
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchResults.count
