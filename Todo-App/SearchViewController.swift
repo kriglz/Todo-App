@@ -9,8 +9,8 @@
 import UIKit
 import RealmSwift
 
-class SearchViewController: UIViewController, UISearchBarDelegate {
-
+class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDataSource {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -20,9 +20,12 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         let viewDissmisRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissController))
         self.view.addGestureRecognizer(viewDissmisRecognizer)
         
+        searchResultTableView.isHidden = true
+
     }
 
     @objc func dismissController() {
+        searchResultTableView.isHidden = true
         searchBar.resignFirstResponder()
         self.dismiss(animated: true)
     }
@@ -35,7 +38,6 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         get {
             var results = realm.objects(Task.self)
             results = results.sorted(byKeyPath: "title", ascending: true)
-            
             return results
         }
     }
@@ -45,11 +47,28 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
+        if (searchBar.text?.isEmpty)! {
+            searchResultTableView.isHidden = true
+        } else {
+            searchResultTableView.isHidden = false
+        }
     }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return searchResults.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "task", for: indexPath) as! TodoTableViewCell
+        cell.taskModel = searchResults[indexPath.row]
+        return cell
+    }
+    
+    
+    
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {

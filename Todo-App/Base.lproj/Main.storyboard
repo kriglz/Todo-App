@@ -108,6 +108,10 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Llb-AK-BMa" id="Uc4-0N-0yY"/>
+                                    <outlet property="delegate" destination="Llb-AK-BMa" id="jAD-Fx-wtj"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.10284674657534247" colorSpace="custom" customColorSpace="sRGB"/>
