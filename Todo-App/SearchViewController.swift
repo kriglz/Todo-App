@@ -11,6 +11,8 @@ import RealmSwift
 
 class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDataSource {
     
+    weak var todoViewController: TodoTableViewController? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,13 +24,12 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDa
         self.view.addGestureRecognizer(viewDissmisRecognizer)
         
         searchResultTableView.isHidden = true
-        
-
     }
 
     @objc func dismissController() {
         searchResultTableView.isHidden = true
         searchBar.resignFirstResponder()
+        todoViewController?.tableView.reloadData()
         self.dismiss(animated: true)
     }
     

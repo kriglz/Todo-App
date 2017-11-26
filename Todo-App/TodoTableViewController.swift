@@ -102,7 +102,8 @@ class TodoTableViewController: UITableViewController {
         }
         
     }
-
+    
+    
     
     
     // MARK: - Table view data source
@@ -161,7 +162,11 @@ class TodoTableViewController: UITableViewController {
                 newTask.title = ""
                 destinationViewController.taskModel = newTask
             }
-        } 
+        } else if segue.identifier == "search" {
+            if let destinationViewController = (segue.destination.contents as? SearchViewController) {
+                destinationViewController.todoViewController = self
+            }
+        }
     }
 
 }
