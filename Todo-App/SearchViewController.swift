@@ -21,6 +21,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDa
         searchBar.becomeFirstResponder()
         
         let viewDissmisRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissController))
+        viewDissmisRecognizer.delegate = self
         self.view.addGestureRecognizer(viewDissmisRecognizer)
         
         searchResultTableView.isHidden = true
@@ -69,7 +70,19 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDa
     }
     
     
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "task" {
+            if let destinationViewController = (segue.destination.contents as? TaskTableViewController) {
+                destinationViewController.navigationItem.title = "Edit task"
+                
+                if let indexOfselectedRow = searchResultTableView.indexPathForSelectedRow?.row {
+                    var newTask = Task()
+                    newTask = searchResults[indexOfselectedRow]
+                    destinationViewController.taskModel = newTask
+                }
+            }
+        }
+    }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -93,4 +106,16 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDa
         dismissController()
     }
    
+}
+
+extension SearchViewController: UIGestureRecognizerDelegate {
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        if let view =  touch.view, view.isDescendant(of: searchResultTableView) {
+            return false
+        }
+        
+        return true
+    }
+    
 }
