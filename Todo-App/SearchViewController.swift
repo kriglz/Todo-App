@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class SearchViewController: UIViewController, UISearchBarDelegate {
 
@@ -18,6 +19,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         
         let viewDissmisRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissController))
         self.view.addGestureRecognizer(viewDissmisRecognizer)
+        
     }
 
     @objc func dismissController() {
@@ -29,8 +31,25 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
    
     
     
+    var searchResults: Results<Task> {
+        get {
+            var results = realm.objects(Task.self)
+            results = results.sorted(byKeyPath: "title", ascending: true)
+            
+            return results
+        }
+    }
+    
+    
+    @IBOutlet weak var searchResultTableView: UITableView!
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
