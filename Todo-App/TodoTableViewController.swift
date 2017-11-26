@@ -52,6 +52,12 @@ class TodoTableViewController: UITableViewController {
         }
     }
     
+    @IBAction func cancelEditTodoList(from segue: UIStoryboardSegue) {
+        if segue.source is SearchViewController {
+            tableView.reloadData()
+        }
+    }
+    
     var todoList: Results<Task> {
         get {
             var newList = realm.objects(Task.self)

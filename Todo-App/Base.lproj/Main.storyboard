@@ -381,6 +381,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Bkp-o3-77x">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="kwB-Xt-a8x">
+                            <connections>
+                                <segue destination="TdN-Ej-O7S" kind="unwind" unwindAction="cancelEditTodoListFrom:" id="U1Q-XN-AsM"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="wjr-wO-Jqq">
                             <connections>
                                 <segue destination="TdN-Ej-O7S" kind="unwind" unwindAction="updateTodoListFrom:" id="Fkd-PA-9nc"/>
