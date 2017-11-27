@@ -60,7 +60,6 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDa
     @IBOutlet weak var searchResultTableView: UITableView!
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
         if (searchBar.text?.isEmpty)! {
             searchResultTableView.isHidden = true
         } else {

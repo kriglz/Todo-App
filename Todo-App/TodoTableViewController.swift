@@ -59,6 +59,7 @@ class TodoTableViewController: UITableViewController {
                     editor.taskModel?.priority = newPriority
                 }
                 realm.add(editor.taskModel!)
+                editor.taskModel = nil
             }
             tableView.reloadData()
         }

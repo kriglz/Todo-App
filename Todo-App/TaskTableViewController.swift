@@ -85,16 +85,14 @@ class TaskTableViewController: UITableViewController, UITextViewDelegate, UIPick
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if text == "\n" {
             textView.resignFirstResponder()
-            
-            return false
-        } else {
-            if textView.text.isEmpty {
-                placeholderLabel.isHidden = false
-            } else {
-                placeholderLabel.isHidden = true
-            }
-            
-            return true
         }
+
+        if textView.text.isEmpty && text.isEmpty {
+            placeholderLabel.isHidden = false
+        } else {
+            placeholderLabel.isHidden = true
+        }
+        
+        return true
     }
 }
