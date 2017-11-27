@@ -36,18 +36,18 @@
                                 <rect key="frame" x="16" y="79" width="343" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="task" rowHeight="129" id="W2U-Zn-jh8" customClass="TodoTableViewCell" customModule="Todo_App" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="343" height="129"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="task" rowHeight="219" id="W2U-Zn-jh8" customClass="TodoTableViewCell" customModule="Todo_App" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="343" height="219"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="W2U-Zn-jh8" id="0do-JE-eOq">
-                                            <rect key="frame" x="0.0" y="0.0" width="310" height="128.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="310" height="218.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="iqj-vU-OyG">
-                                                    <rect key="frame" x="6" y="11" width="298" height="106.5"/>
+                                                    <rect key="frame" x="6" y="11" width="298" height="196.5"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleAspectFit" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ATw-bY-1Uw">
-                                                            <rect key="frame" x="0.0" y="38.5" width="60" height="30"/>
+                                                            <rect key="frame" x="0.0" y="83.5" width="60" height="30"/>
                                                             <subviews>
                                                                 <button opaque="NO" multipleTouchEnabled="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kqe-c5-fKl" userLabel="Completed Button">
                                                                     <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
@@ -70,8 +70,8 @@
                                                                 </label>
                                                             </subviews>
                                                         </stackView>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="AJp-hO-aCo">
-                                                            <rect key="frame" x="-6" y="44" width="0.0" height="18.5"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="AJp-hO-aCo">
+                                                            <rect key="frame" x="-6" y="89" width="0.0" height="18.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vb6-1J-7HG">
                                                                     <rect key="frame" x="0.0" y="0.0" width="0.0" height="10.5"/>
@@ -82,7 +82,7 @@
                                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MyTask" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TzQ-Kk-z6z">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MyTask" lineBreakMode="wordWrap" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TzQ-Kk-z6z">
                                                                     <rect key="frame" x="0.0" y="18.5" width="0.0" height="0.0"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                                     <nil key="textColor"/>
@@ -447,6 +447,6 @@
         <image name="xCheckbox" width="90" height="90"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mtr-aH-A0L"/>
+        <segue reference="Wrl-rg-TKE"/>
     </inferredMetricsTieBreakers>
 </document>
