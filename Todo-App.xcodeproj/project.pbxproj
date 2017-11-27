@@ -134,8 +134,8 @@
 				89C994541FC4DB4D0006B43C /* TodoTableViewController.swift */,
 				896E519A1FC4EACE0079A346 /* TodoTableViewCell.swift */,
 				89A8D4401FC548E300BFC007 /* TaskTableViewController.swift */,
-				89C994291FC4D3230006B43C /* Main.storyboard */,
 				89B0B2AB1FCA2A1D006BAC9E /* SearchViewController.swift */,
+				89C994291FC4D3230006B43C /* Main.storyboard */,
 				89C994531FC4D5120006B43C /* Supporting Files */,
 			);
 			path = "Todo-App";

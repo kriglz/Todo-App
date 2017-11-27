@@ -24,6 +24,8 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDa
         viewDissmisRecognizer.delegate = self
         self.view.addGestureRecognizer(viewDissmisRecognizer)
         
+        searchResultTableView.estimatedRowHeight = searchResultTableView.rowHeight
+        searchResultTableView.rowHeight = UITableViewAutomaticDimension
         searchResultTableView.isHidden = true
     }
 
@@ -51,8 +53,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDa
 
         }
     }
-    
-    
+
     
     
     
@@ -109,7 +110,6 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDa
 }
 
 extension SearchViewController: UIGestureRecognizerDelegate {
-    
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         if let view =  touch.view, view.isDescendant(of: searchResultTableView) {
             return false
@@ -117,5 +117,33 @@ extension SearchViewController: UIGestureRecognizerDelegate {
         
         return true
     }
+}
+
+
+
+extension UITableView {
+    //forces a cell to be created for every row
     
+    func minimunSize(forSize section: Int) -> CGSize {
+        var width: CGFloat = 0
+        var height: CGFloat = 0
+        for row in 0..<numberOfRows(inSection: section){
+            let indexPath = IndexPath(row: row, section: section)
+            if let cell = cellForRow(at: indexPath) ?? dataSource?.tableView(self, cellForRowAt: indexPath) {
+                let cellSize = cell.contentView.systemLayoutSizeFitting(UILayoutFittingExpandedSize)
+                let tableWidth = self.bounds.width
+                width = max(width, tableWidth)
+                height += heightForRow(at: indexPath)
+            }
+        }
+        return CGSize(width: width, height: height)
+    }
+    
+    func heightForRow(at indexPath: IndexPath? = nil) -> CGFloat {
+        if indexPath != nil, let heigh = delegate?.tableView?(self, heightForRowAt: indexPath!) {
+            return heigh
+        } else {
+            return rowHeight
+        }
+    }
 }

@@ -106,7 +106,6 @@ class TodoTableViewController: UITableViewController {
          default:
             sortingControl.selectedSegmentIndex = -1
         }
-        
     }
     
     
