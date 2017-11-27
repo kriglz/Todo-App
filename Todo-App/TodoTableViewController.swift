@@ -34,6 +34,9 @@ class UserDefaultsManager {
 
 
 
+
+
+
 class TodoTableViewController: UITableViewController {
 
     
@@ -46,6 +49,15 @@ class TodoTableViewController: UITableViewController {
     @IBAction func updateTodoList(from segue: UIStoryboardSegue) {
         if let editor = segue.source as? TaskTableViewController {
             try? realm.write {
+                if let newTitle = editor.newTitle {
+                    editor.taskModel?.title = newTitle
+                }
+                if let newDueDate = editor.newDueDate {
+                    editor.taskModel?.dueDate = newDueDate
+                }
+                if let newPriority = editor.newPriority {
+                    editor.taskModel?.priority = newPriority
+                }
                 realm.add(editor.taskModel!)
             }
             tableView.reloadData()
@@ -53,7 +65,7 @@ class TodoTableViewController: UITableViewController {
     }
     
     @IBAction func cancelEditTodoList(from segue: UIStoryboardSegue) {
-        if segue.source is SearchViewController {
+        if segue.source is TaskTableViewController {
             tableView.reloadData()
         }
     }

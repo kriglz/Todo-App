@@ -30,33 +30,13 @@ class TaskTableViewController: UITableViewController, UITextViewDelegate, UIPick
         taskPriorityControler.addTarget(self, action: #selector(priorityChange), for: .valueChanged)
     }
     
-    @objc func priorityChange(){
-        realm.beginWrite()
-        switch taskPriorityControler.selectedSegmentIndex {
-        case 1:
-            taskModel?.priority = .low
-        case 2:
-            taskModel?.priority = .medium
-        case 3:
-            taskModel?.priority = .high
-        default:
-            taskModel?.priority = .none
-        }
-        try? realm.commitWrite()
-    }
     
+    var taskModel: Task?
     var placeholderLabel : UILabel!
     @IBOutlet weak var todoTaskLabel: UITextView!
     @IBOutlet weak var dateLabel: UIDatePicker!
     @IBOutlet weak var taskPriorityControler: UISegmentedControl!
     
-    @IBAction func setDueDate(_ sender: UIDatePicker) {
-        realm.beginWrite()
-        taskModel?.dueDate = sender.date
-        try? realm.commitWrite()
-    }
-    
-    var taskModel: Task?
     
     private func updateUI(){
         dateLabel?.date = taskModel!.dueDate
@@ -75,13 +55,31 @@ class TaskTableViewController: UITableViewController, UITextViewDelegate, UIPick
         }
     }
     
+    var newTitle: String?
     
     func textViewDidChange(_ textView: UITextView) {
-        realm.beginWrite()
-        taskModel?.title = todoTaskLabel.text
-        try? realm.commitWrite()
+        newTitle = todoTaskLabel.text
     }
     
+    var newDueDate: Date?
+    @IBAction func setDueDate(_ sender: UIDatePicker) {
+        newDueDate = sender.date
+    }
+    
+    var newPriority: TaskPriority?
+    
+    @objc func priorityChange(){
+        switch taskPriorityControler.selectedSegmentIndex {
+        case 1:
+            newPriority = .low
+        case 2:
+            newPriority = .medium
+        case 3:
+            newPriority = .high
+        default:
+            newPriority = .none
+        }
+    }
     
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
@@ -99,5 +97,4 @@ class TaskTableViewController: UITableViewController, UITextViewDelegate, UIPick
             return true
         }
     }
-    
 }
