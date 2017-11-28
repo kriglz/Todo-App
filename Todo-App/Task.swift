@@ -29,6 +29,8 @@ class Task: Object {
     
 }
 
+/// Defines possible priority states as Int -
+/// that is required for Realm implementation.
 @objc enum TaskPriority: Int {
     case high
     case medium

@@ -9,6 +9,7 @@
 import UIKit
 import RealmSwift
 
+/// `Realm` database instance.
 var realm: Realm!
 
 @UIApplicationMain

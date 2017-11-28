@@ -55,8 +55,14 @@ class TaskTableViewController: UITableViewController, UITextViewDelegate, UIPick
         }
     }
     
-    var newTitle: String?
+    func resetDataModel(){
+        newPriority = nil
+        newTitle = nil
+        newDueDate = nil
+        taskModel = nil
+    }
     
+    var newTitle: String?
     func textViewDidChange(_ textView: UITextView) {
         newTitle = todoTaskLabel.text
     }
@@ -67,7 +73,6 @@ class TaskTableViewController: UITableViewController, UITextViewDelegate, UIPick
     }
     
     var newPriority: TaskPriority?
-    
     @objc func priorityChange(){
         switch taskPriorityControler.selectedSegmentIndex {
         case 1:

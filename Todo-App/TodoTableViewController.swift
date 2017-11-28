@@ -15,7 +15,7 @@ class UserDefaultsManager {
     private let sortDefault = UserDefaults.standard
     private let sortKey = "sortBy"
     
-    var sortByDefault: String {
+    var sortingKey: String {
         get {
             // Get the String from UserDefaults
             if let sortBy = sortDefault.string(forKey: sortKey) {
@@ -36,73 +36,12 @@ class UserDefaultsManager {
 
 
 
-
+/// TableViewController, wich shows complete list of todos.
 class TodoTableViewController: UITableViewController {
 
     
-    @IBAction func search(_ sender: UIBarButtonItem) {
-        searchBar.isHidden = false
-    }
-    
-    @IBOutlet weak var searchBar: UISearchBar!
-    
-    @IBAction func updateTodoList(from segue: UIStoryboardSegue) {
-        if let editor = segue.source as? TaskTableViewController {
-            try? realm.write {
-                if let newTitle = editor.newTitle {
-                    editor.taskModel?.title = newTitle
-                }
-                if let newDueDate = editor.newDueDate {
-                    editor.taskModel?.dueDate = newDueDate
-                }
-                if let newPriority = editor.newPriority {
-                    editor.taskModel?.priority = newPriority
-                }
-                realm.add(editor.taskModel!)
-                editor.taskModel = nil
-            }
-            tableView.reloadData()
-        }
-    }
-    
-    @IBAction func cancelEditTodoList(from segue: UIStoryboardSegue) {
-        if segue.source is TaskTableViewController {
-            tableView.reloadData()
-        }
-    }
-    
-    var todoList: Results<Task> {
-        get {
-            var newList = realm.objects(Task.self)
-            newList = newList.sorted(byKeyPath: sortingKey, ascending: true)
+    // MARK: - ViewDidLoad
 
-            return newList
-        }
-    }
-    
-    
-    var sortingKey: String = UserDefaultsManager().sortByDefault {
-        didSet {
-            UserDefaultsManager().sortByDefault = sortingKey
-        }
-    }
-
-    @IBAction func sortingControl(_ sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex {
-        case 0:
-            sortingKey = "dueDate"
-        case 1:
-            sortingKey = "priority"
-        case 2:
-            sortingKey = "isCompleted"
-        default:
-            break
-        }
-        tableView.reloadData()
-    }
-    
-    @IBOutlet weak var sortingControl: UISegmentedControl!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -116,16 +55,64 @@ class TodoTableViewController: UITableViewController {
             sortingControl.selectedSegmentIndex = 1
         case "isCompleted":
             sortingControl.selectedSegmentIndex = 2
-         default:
+        default:
             sortingControl.selectedSegmentIndex = -1
         }
     }
     
+
     
     
+    // MARK: - Variables
+
+    
+    /// An array of `Task` elements from `Realm` database sorted asendingly by `sortingKey`.
+    private var todoList: Results<Task> {
+        
+        /// An array of fetched results using `Task` from Realm database.
+        var list = realm.objects(Task.self)
+        list = list.sorted(byKeyPath: sortingKey, ascending: true)
+        
+        return list
+    }
+    
+    /// A String used to sort fetched results from `Realm`; stored in `UserDefaultsManager`.
+    private var sortingKey: String = UserDefaultsManager().sortingKey {
+        didSet {
+            UserDefaultsManager().sortingKey = sortingKey
+        }
+    }
+
+    /// UISegmentedControl which represents prefered sorting.
+    @IBOutlet weak var sortingControl: UISegmentedControl!
+    
+    
+    
+    
+    // MARK: - Actions
+    
+    
+    /// Highlights selected segment.
+    @IBAction func sortingControl(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            sortingKey = "dueDate"
+        case 1:
+            sortingKey = "priority"
+        case 2:
+            sortingKey = "isCompleted"
+        default:
+            break
+        }
+        tableView.reloadData()
+    }
+
+    
+
     
     // MARK: - Table view data source
 
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -134,12 +121,10 @@ class TodoTableViewController: UITableViewController {
         return todoList.count
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "task", for: indexPath) as! TodoTableViewCell
 
         cell.taskModel = todoList[indexPath.row]
-
         return cell
     }
     
@@ -149,22 +134,26 @@ class TodoTableViewController: UITableViewController {
     }
  
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == UITableViewCellEditingStyle.delete) {
+        if editingStyle == UITableViewCellEditingStyle.delete {
             try! realm.write {
                 realm.delete(todoList[indexPath.row])
             }
-            
             tableView.reloadData()
         }
     }
 
-
-
+    
+    
+    
     // MARK: - Navigation
 
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // Segue to edit an existing task.
         if segue.identifier == "task" {
             if let destinationViewController = (segue.destination.contents as? TaskTableViewController) {
+                
                 destinationViewController.navigationItem.title = "Edit task"
                 
                 if let indexOfselectedRow = tableView.indexPathForSelectedRow?.row {
@@ -173,6 +162,8 @@ class TodoTableViewController: UITableViewController {
                     destinationViewController.taskModel = newTask
                 }
             }
+            
+        // Segue to create a new task.
         } else if segue.identifier == "addTask" {
             if let destinationViewController = (segue.destination.contents as? TaskTableViewController) {
                 destinationViewController.navigationItem.title = "New task"
@@ -180,17 +171,58 @@ class TodoTableViewController: UITableViewController {
                 newTask.title = ""
                 destinationViewController.taskModel = newTask
             }
+            
+        // Segue to searchBar window to filter todo list using search terms.
         } else if segue.identifier == "search" {
             if let destinationViewController = (segue.destination.contents as? SearchViewController) {
                 destinationViewController.todoViewController = self
             }
         }
     }
-
+    
+    
+    
+    /// Saves edited changes to `Realm` database.
+    @IBAction func updateTodoList(from segue: UIStoryboardSegue) {
+        
+        if let editor = segue.source as? TaskTableViewController {
+            
+            try? realm.write {
+                if let newTitle = editor.newTitle {
+                    editor.taskModel?.title = newTitle
+                }
+                if let newDueDate = editor.newDueDate {
+                    editor.taskModel?.dueDate = newDueDate
+                }
+                if let newPriority = editor.newPriority {
+                    editor.taskModel?.priority = newPriority
+                }
+                
+                realm.add(editor.taskModel!)
+                
+                // Setting TaskTableViewController Realm data model instance to nil to avoid memory leak.
+                editor.resetDataModel()
+            }
+            tableView.reloadData()
+        }
+    }
+    
+    
+    
+    ///  Discards unsaved TaskTableViewController instance changes.
+    @IBAction func cancelEditTodoList(from segue: UIStoryboardSegue) {
+        
+        if let editor = segue.source as? TaskTableViewController {
+            
+            editor.resetDataModel()
+        }
+    }
 }
 
+
+
 extension UIViewController {
-    
+    /// The destination view controller which is embedded in the `UINavigationController`.
     var contents: UIViewController {
         if let navcon = self as? UINavigationController {
             return navcon.visibleViewController ?? self
@@ -198,5 +230,4 @@ extension UIViewController {
             return self
         }
     }
-    
 }
