@@ -221,7 +221,6 @@ class TodoTableViewController: UITableViewController {
     @IBAction func cancelEditTodoList(from segue: UIStoryboardSegue) {
         
         if let editor = segue.source as? TaskTableViewController {
-            
             editor.resetDataModel()
         }
     }
