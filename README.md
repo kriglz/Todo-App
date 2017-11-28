@@ -1,4 +1,4 @@
-# Graph-calculator
+# Todos
 
 ![Mockups 1](./Images/Todos.png)
 
