@@ -10,23 +10,30 @@ import UIKit
 import RealmSwift
 
 
+
+
+/// `UserDefaults` database to store `sortingKey` value.
 class UserDefaultsManager {
-    // Create UserDefaults
-    private let sortDefault = UserDefaults.standard
-    private let sortKey = "sortBy"
     
-    var sortingKey: String {
+    /// A standard `UserDefaults` database.
+    private let sortingKeyDatabase = UserDefaults.standard
+    
+    /// A String, which defines the key for stored value.
+    private let key = "sortingKey"
+    
+    /// A String which is stored as `key` value in `UserDefaults` database.
+    var sortingKeyValue: String {
         get {
-            // Get the String from UserDefaults
-            if let sortBy = sortDefault.string(forKey: sortKey) {
-                return sortBy
+            // Returns the String for `key` from `UserDefaults` database.
+            if let oldSortingKeyValue = sortingKeyDatabase.string(forKey: key) {
+                return oldSortingKeyValue
             } else {
                 return "priority"
             }
         }
         set {
-            // Save String value to UserDefaults
-            sortDefault.set(newValue, forKey: sortKey)
+            // Saves the new `key` value to `UserDefaults` database.
+            sortingKeyDatabase.set(newValue, forKey: key)
         }
     }
 }
@@ -42,6 +49,7 @@ class TodoTableViewController: UITableViewController {
     
     // MARK: - ViewDidLoad
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -77,9 +85,9 @@ class TodoTableViewController: UITableViewController {
     }
     
     /// A String used to sort fetched results from `Realm`; stored in `UserDefaultsManager`.
-    private var sortingKey: String = UserDefaultsManager().sortingKey {
+    private var sortingKey: String = UserDefaultsManager().sortingKeyValue {
         didSet {
-            UserDefaultsManager().sortingKey = sortingKey
+            UserDefaultsManager().sortingKeyValue = sortingKey
         }
     }
 
