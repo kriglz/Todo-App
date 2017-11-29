@@ -54,8 +54,21 @@ class TodoTableViewCell: UITableViewCell {
         // Sets `completedButton`.
         if taskModel.isCompleted {
             completedButton.isSelected = true
+            priorityLabel.textColor = .black
         } else {
             completedButton.isSelected = false
+            
+            // Sets completed button color.
+            switch taskModel.priority {
+            case .high:
+                priorityLabel.textColor = .red
+            case .medium:
+                priorityLabel.textColor = .orange
+            case .low:
+                priorityLabel.textColor = UIColor.init(red: 255/255, green: 216/255, blue: 0, alpha: 1) 
+            default:
+                priorityLabel.textColor = .black
+            }
         }
         
         // Sets priority.
