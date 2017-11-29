@@ -65,7 +65,7 @@ class TodoTableViewCell: UITableViewCell {
             case .medium:
                 priorityLabel.textColor = .orange
             case .low:
-                priorityLabel.textColor = UIColor.init(red: 255/255, green: 216/255, blue: 0, alpha: 1) 
+                priorityLabel.textColor = UIColor.init(red: 255/255, green: 216/255, blue: 0, alpha: 1)
             default:
                 priorityLabel.textColor = .black
             }
