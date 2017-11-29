@@ -8,6 +8,10 @@
 
 import UIKit
 
+
+
+
+/// Manages cell View of todo task.
 class TodoTableViewCell: UITableViewCell {
     
     

@@ -43,7 +43,7 @@ class UserDefaultsManager {
 
 
 
-/// TableViewController, wich shows complete list of todos.
+/// Manages complete list of todos View.
 class TodoTableViewController: UITableViewController {
 
     

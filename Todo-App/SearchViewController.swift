@@ -9,6 +9,9 @@
 import UIKit
 import RealmSwift
 
+
+
+/// Manages searching and filtering of todo list View.
 class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDataSource {
     
     

@@ -8,9 +8,18 @@
 
 import UIKit
 
+
+
+
+/// Manages single todo task View.
 class TaskTableViewController: UITableViewController, UITextViewDelegate, UIPickerViewDelegate {
 
+    
+    // MARK: - ViewDidLoad
+    
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         todoTaskLabel.delegate = self
 
@@ -18,6 +27,7 @@ class TaskTableViewController: UITableViewController, UITextViewDelegate, UIPick
             updateUI()
         }
 
+        // Setting `placeholderLabel` properties and hidding it if `todoTaskLabel` is not empty.
         placeholderLabel = UILabel()
         placeholderLabel.text = "Enter new task..."
         placeholderLabel.font = todoTaskLabel.font
@@ -31,18 +41,38 @@ class TaskTableViewController: UITableViewController, UITextViewDelegate, UIPick
     }
     
     
+
+    
+    // MARK: - Instances
+
+    
+    /// A `Task` instance containing `title`, `priotity`, `dueDate`.
     var taskModel: Task?
-    var placeholderLabel : UILabel!
+    /// An UILabel which acts as placeholder to inform about text field.
+    private var placeholderLabel : UILabel!
+    /// An UITextView which represents task title.
     @IBOutlet weak var todoTaskLabel: UITextView!
+    /// An UIDatePicker which represents due date of the task.
     @IBOutlet weak var dateLabel: UIDatePicker!
+    /// An UISegmentedControl which represents priotity of the task.
     @IBOutlet weak var taskPriorityControler: UISegmentedControl!
     
     
+    
+    
+    // MARK: - Methods
+
+    
+    /// Updates appearance of UI.
     private func updateUI(){
+        
+        // Sets dueDate.
         dateLabel?.date = taskModel!.dueDate
 
+        // Sets task title.
         todoTaskLabel?.text = taskModel!.title
 
+        // Sets priority.
         switch taskModel!.priority {
         case .high:
             taskPriorityControler?.selectedSegmentIndex = 3
@@ -55,6 +85,8 @@ class TaskTableViewController: UITableViewController, UITextViewDelegate, UIPick
         }
     }
     
+    
+    /// Resets data model and related instances to nil.
     func resetDataModel(){
         newPriority = nil
         newTitle = nil
@@ -62,16 +94,19 @@ class TaskTableViewController: UITableViewController, UITextViewDelegate, UIPick
         taskModel = nil
     }
     
-    var newTitle: String?
-    func textViewDidChange(_ textView: UITextView) {
-        newTitle = todoTaskLabel.text
-    }
+
     
+    
+    // MARK: - Actions
+
+    
+    /// Sets a new date if user changes it.
     var newDueDate: Date?
     @IBAction func setDueDate(_ sender: UIDatePicker) {
         newDueDate = sender.date
     }
     
+    /// Sets a new  priority if user changes it.
     var newPriority: TaskPriority?
     @objc func priorityChange(){
         switch taskPriorityControler.selectedSegmentIndex {
@@ -86,6 +121,19 @@ class TaskTableViewController: UITableViewController, UITextViewDelegate, UIPick
         }
     }
     
+
+    
+    
+    
+    
+    // MARK: - TextView delegate
+    
+    
+    /// A String which is set if user is editing task title.
+    var newTitle: String?
+    func textViewDidChange(_ textView: UITextView) {
+        newTitle = todoTaskLabel.text
+    }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if text == "\n" {
